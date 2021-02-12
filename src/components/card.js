@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 
 const Card = (article) => {
   // TASK 5
@@ -19,30 +19,30 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
-  const card = document.createElement('div')
-  const cardHead = document.createElement('div')
-  const author = document.createElement('div')
-  const imgContain = document.createElement('div')
-  const img = document.createElement('img')
-  const authorName = document.createElement('span')
+  const card = document.createElement("div");
+  const cardHead = document.createElement("div");
+  const author = document.createElement("div");
+  const imgContain = document.createElement("div");
+  const img = document.createElement("img");
+  const authorName = document.createElement("span");
 
-  card.classList.add('card')
-  cardHead.classList.add('headline')
-  author.classList.add('author')
-  imgContain.classList.add('img-container')
+  card.classList.add("card");
+  cardHead.classList.add("headline");
+  author.classList.add("author");
+  imgContain.classList.add("img-container");
 
-  cardHead.textContent = article.headline
-  img.src = article.authorPhoto
-  authorName.textContent = article.authorName
+  cardHead.textContent = article.headline;
+  img.src = article.authorPhoto;
+  authorName.textContent = article.authorName;
 
-  card.appendChild(cardHead)
-  card.appendChild(author)
-  author.appendChild(imgContain)
-  author.appendChild(authorName)
-  imgContain.appendChild(img)
+  card.appendChild(cardHead);
+  card.appendChild(author);
+  author.appendChild(imgContain);
+  author.appendChild(authorName);
+  imgContain.appendChild(img);
 
-  return card
-}
+  return card;
+};
 
 const cardAppender = (selector) => {
   // TASK 6
@@ -53,26 +53,37 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
+const container = document.createElement("div");
 
   axios
-    .get('https://lambda-times-api.herokuapp.com/articles')
+    .get("https://lambda-times-api.herokuapp.com/articles")
     .then((res) => {
       // console.log('6:', res)
-      const articles = res.data.articles
-       const arts = Object.keys(articles)
-        arts.forEach((subArts) => {
-          console.log("subArts", subArts)
+      const articles = res.data.articles;
 
-        })
+      //articles is an object - need to convert to array to loop
+      const arts = Object.values(articles);
 
+      console.log("arts:", arts);
+      
+     
+
+      for(let i = 0; i < arts.length; i++){
+      let subArt = arts[i]
+      
+        for(let i = 0; i < subArt.length; i++){
+          const finalSubArt = subArt[i]
+            const cardContainer = document.querySelector(selector)
+            cardContainer.appendChild(Card(finalSubArt));
+        } //2nd for loop 
+      } //1st for loop
         
+    }) //closes then
 
-
-    })
+    // })
     .catch((err) => {
-      console.log(err)
-    })
+      console.log(err);
+    }); //closes catch
+}; //closes function
 
-}
-
-export { Card, cardAppender }
+export { Card, cardAppender };
