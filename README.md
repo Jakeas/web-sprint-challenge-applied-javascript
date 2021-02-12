@@ -30,10 +30,10 @@ In meeting the minimum viable product (MVP) specifications listed below, your pr
 
 #### Launching the App
 
-- [ ] Navigate to the root of the project with your command line.
-- [ ] Run `npm install` to download the dependencies listed in the `package.json` file.
-- [ ] Run `npm start` to compile the project and serve it.
-- [ ] Navigate Chrome to the URL indicated in the output of the `npm start` command.
+- [x ] Navigate to the root of the project with your command line.
+- [x ] Run `npm install` to download the dependencies listed in the `package.json` file.
+- [x ] Run `npm start` to compile the project and serve it.
+- [x ] Navigate Chrome to the URL indicated in the output of the `npm start` command.
 
 ### B - Project Requirements
 
